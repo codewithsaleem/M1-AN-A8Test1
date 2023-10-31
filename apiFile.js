@@ -91,9 +91,10 @@ app.get("/purchases", function (req, res) {
     }
 
     if (productid) {
+        const productIds = productid.split(',').map(id => id.trim()); 
         filteredPurchases = filteredPurchases.filter((purchase) => {
             const productid1 = purchase.productid.toString();
-            return productid1 === productid.substring(2);
+            return productIds.some(id => productid1 === id.substring(2)); 
         });
     }
 
